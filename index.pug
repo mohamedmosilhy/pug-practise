@@ -1,0 +1,75 @@
+include includes/vars
+include includes/mixins
+
+doctype
+html(lan="en")
+    head
+        block title
+            title My Resume
+        meta(charset="UTF-8")
+        include includes/links.pug
+
+    body
+        block appended 
+            main index
+        block content    
+            div(class="main-container", id="main") 
+                
+                
+                h2(class="main-title") My Skills
+                //- skils
+                
+                ul(class="skill-list")  
+                    li PHP #{bold}
+                    li MYSQL !{bold}
+                    li Sass
+                    li PugJs
+
+                //- mixin include
+                +list
+                +feature('price')
+
+                //- this for loop
+                ul
+                    -for (let index = 0; index < 10; index++)
+                        li item-#{index}
+                //- this each loop
+                each val in []
+                    div= val
+                else 
+                    div no values
+                div= 'I Love <b>PugJs</b> And <b>Sass</b>'
+                div!= 'I Love <b>PugJs</b> And <b>Sass</b>'
+
+                div(class="parent") parent
+                    div(class = "child " + className) child
+
+                p.main-para I Love <b>PugJs</b> And <b>Sass</b>
+                p.inter this is interpolation #[b test]
+                p#mian-para
+                | I Love 
+                b PugJs
+                |  And 
+                b Sass
+
+                form 
+                    h2.contact-title Contact Me
+                    input(class="f-c", type="text", name="user")
+                    input(class="f-c", type="email", name="email")
+                    input(class="f-c", type="text", name="subj")
+                    button Send
+                    button Reset
+
+                - var friends = 10
+                case friends
+                    when 0
+                        p you have no friends
+                    when 1
+                        p you have a friend
+                    default
+                        p you have #{friends} friends
+
+
+    include includes/scripts.pug
+
+
